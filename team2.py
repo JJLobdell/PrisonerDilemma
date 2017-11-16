@@ -1,4 +1,4 @@
-####
+#### Team 2 - Abby and Shayla
 # Each team's file must define four tokens:
 #     team_name: a string
 #     strategy_name: a string
@@ -6,18 +6,30 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Spirit Monkeys' # Only 10 chars displayed.
+strategy_name = 'Rather safe than sorry.'
+strategy_description = '''If my score equals the score of my opponent, then look at their history
+    and pick collude or betray based on what they do more often. If my score is lower than theirs,
+    betray. If my score is higher, collude.'''
     
 def move(my_history, their_history, my_score, their_score):
-    ''' Arguments accepted: my_history, their_history are strings.
+    '''Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
     Make my move.
     Returns 'c' or 'b'. 
     '''
-
+    if my_score == their_score:
+       if their_history is 'c'>'b':
+           return 'c'
+       else: 
+           return 'b'
+    else:
+       if my_score > their_score:
+           return 'c'
+       else:
+           return 'b'
+  
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
     # The first round between these two players is my_history[0] and their_history[0].
