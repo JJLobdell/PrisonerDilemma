@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -6,9 +7,9 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'πSn' # Only 10 chars displayed.
+strategy_name = 'The Backup Plan'
+strategy_description = 'Our first plan employs a strategy that encompasses betraying as much as possible until they start betraying to lure their code into coluding again. Then if their score becomes greater than ours, we created a backup plan that might instead beat their code, giving outselves two startegies and more ground to cover.'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -25,9 +26,22 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
+    if 'c' in their_history[-1]:
+        return 'b'
+    if 'b' in their_history[-3] > 2:
+        return 'c'
+    if 'b' in their_history[-4] > 2 and their_score > my_score:
+        return 'c'
+    if their_score > my_score:
+        if 'b' in their_history[-5] > 1:
+            return 'b'
+        if 'c' in their_history[-3] > 1:
+            return 'b'
+        if 'b' in my_history[-5] > 3:
+            return 'c'
+        else:
+            return 'c'
     
-    return 'c'
-
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
