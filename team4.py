@@ -26,13 +26,13 @@ def move(my_history, their_history, my_score, their_score):
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
     
-    if 'c,b,b' in their_history [0:-3]:
+    if 'cbb' in their_history [0:-3]:
         return 'c'
-    if 'c,b,c' in their_history [0:-3]:
+    if 'cbc' in their_history [0:-3]:
         return 'c'
-    if 'c,c,c' in their_history [0:-3]:
+    if 'ccc' in their_history [0:-3]:
         return 'b'
-    if 'c,c,b' in their_history [0:-3]:
+    if 'ccb' in their_history [0:-3]:
        return 'c'
     if 'c' in their_history [0:-1]:
         return 'c'
@@ -40,9 +40,3 @@ def move(my_history, their_history, my_score, their_score):
         return 'b'
     else:
         return 'c'
-   
-     
-
-        
-        
-    

@@ -1,4 +1,3 @@
-import random
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -7,9 +6,9 @@ import random
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'Team5Guys' # Only 10 chars displayed.
-strategy_name = 'Burgers and Fries'
-strategy_description = 'Start with three betrayals, then if they collude on the third one, we betray another 3 times, if not, we collude once, then betray twice and check, then repeat'
+team_name = 'JegoPaul' # Only 10 chars displayed.
+strategy_name = 'The name the team gives to this strategy'
+strategy_description = 'How does this strategy decide?'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -19,6 +18,45 @@ def move(my_history, their_history, my_score, their_score):
     Returns 'c' or 'b'. 
     '''
 
+
+
+
+    b=0
+    v=-1 #initialize walker variable
+    c=0
+    cc=0
+    for each in their_history[:]:
+        if 'b' in their_history[v]:
+            b+=1
+        if 'c' in their_history:
+            c+=1
+        if c+b==2 :
+            if 'cc' in their_history[v-1:v]:
+                cc+=1 #to try to predict when they will collude
+            if'bb' in their_history[-5:]:
+                b+=3#to weigh average
+            if 'bbb' in their_history[-5]:
+                b+=8#to weigh average
+                
+        v-=1 #walker
+    b= b/(b+c)
+    if b >=.5 and cc <3:
+        return 'b'
+    else:
+        if cc>= 3 and their_history[-1]==c:
+            return 'b'
+        if b<5:
+            return 'c'
+            
+            # the program takes the weighted average of the previous moves
+            # so if they play bbb or ccc 3 time 
+            # then they play c and we play b
+            
+            
+            
+            
+            
+            
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 
     # The first round between these two players is my_history[0] and their_history[0].
@@ -27,20 +65,8 @@ def move(my_history, their_history, my_score, their_score):
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
     
-    collude = 'c'
-    betrayal = 'b'
-    x = random.randint(1, 2) 
-    if 'c' in their_history[-3:-1]:
-        return betrayal
-    if x == 1:
-        if 'bbb' in their_history [-3:-1]:
-            return betrayal
-    if x == 2:
-        if 'bbb' in their_history [-3:-1]:
-            return collude
-    else:
-        return collude
-    
+    return 'c'
+
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
