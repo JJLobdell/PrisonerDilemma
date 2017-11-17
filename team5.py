@@ -1,3 +1,4 @@
+import random
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -28,12 +29,18 @@ def move(my_history, their_history, my_score, their_score):
     
     collude = 'c'
     betrayal = 'b'
+    x = random.randint(1, 2) 
     if 'c' in their_history[-3:-1]:
         return betrayal
-    if 'bb' in their_history [-3:-1]:
-        return betrayal
+    if x == 1:
+        if 'bbb' in their_history [-3:-1]:
+            return betrayal
+    if x == 2:
+        if 'bbb' in their_history [-3:-1]:
+            return collude
     else:
         return collude
+    
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
